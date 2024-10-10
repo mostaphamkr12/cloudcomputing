@@ -1,12 +1,13 @@
 import Fastify from "fastify";
+import { featureStore } from "./featureStore.mjs";
 
 export function createServer() {
   const fastify = Fastify();
 
-  // Define the route to include :code parameter
   fastify.get("/feature/:code", async function handler(request, reply) {
-    const { code } = request.params; // Get the code parameter from the request
-    return reply.send({ code, enabled: true });
+    const { code } = request.params;
+    const enabled = await featureStore.isEnabled(code);
+    return reply.send({ code, enabled });
   });
 
   return fastify;
