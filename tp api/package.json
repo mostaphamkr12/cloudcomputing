@@ -8,7 +8,7 @@
         
       "api:clean": "docker stop feature-api; docker rmi feature/api",
       "api:build": "docker buildx build -f api/Dockerfile -t feature/api .",
-      "api:run": "docker run -d --network feature-net --name feature-api -p 3000:80 feature/api",
+      "api:run": "docker run -d  --network feature-net --name feature-api feature/api",
       "api:all": "npm run api:clean; npm run api:build; npm run api:run",
       "nginx:clean": "docker stop feature-nginx; docker rmi feature/nginx",
       "nginx:build": "docker buildx build -f nginx/Dockerfile -t feature/nginx ./nginx",
