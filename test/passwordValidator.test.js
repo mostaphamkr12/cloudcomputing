@@ -1,6 +1,8 @@
-const { validatePassword } = require('./passwordValidatorV1.js');
+const {  validatePassword  } = require('./passWordValidator.js');
+
 
 test('Password should have at least 8 characters', () => {
-    const password = "12eA35%6";
-    expect(validatePassword(password)).toBe(true);
+    const isValid=validatePassword("aZ1*bcde");
+    expect(isValid).toBe(true);
 });
+
