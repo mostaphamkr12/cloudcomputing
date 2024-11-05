@@ -1,5 +1,19 @@
-function validatePassword(password) {
-  return password.length >= 8 && password.match(/[a-z]/) !== null && password.match(/[A-Z]/) !== null && password.match(/[0-9]/) !== null && password.match(/[^a-zA-Z0-9]/) !== null;
-}
-
-module.exports = {validatePassword};
+function validatePassword(password, options = {}) {
+    const {
+      minLength = 8,
+      minLetters = 1,
+      minDigits = 1,
+      customRules = []
+    } = options;
+  
+    const hasMinLength = password.length >= minLength;
+    const hasMinLetters = (password.match(/[a-zA-Z]/g) || []).length >= minLetters;
+    const hasMinDigits = (password.match(/[0-9]/g) || []).length >= minDigits;
+    const hasSpecialChar = password.match(/[^a-zA-Z0-9]/) !== null;
+  
+    const customRulesPassed = customRules.every(rule => rule(password));
+  
+    return hasMinLength && hasMinLetters && hasMinDigits && hasSpecialChar && customRulesPassed;
+  }
+  
+  module.exports = { validatePassword };
