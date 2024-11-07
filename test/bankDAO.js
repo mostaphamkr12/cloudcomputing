@@ -1,8 +1,9 @@
 // bankDAO.js
 
 const bankDAO = {
-  retrieveBalance: function() {
+  retrieveBalance: function(accountId) {
     console.log("Retrieve balance");
+    return 1000;
   }
 };
 
