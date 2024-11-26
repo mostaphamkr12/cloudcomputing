@@ -1,0 +1,7 @@
+header {
+    color:var(--main-color);
+    border:var(--border);
+    font-size: clamp(20px, 5vw, 80px);
+    padding: var(--space-medium);
+
+}

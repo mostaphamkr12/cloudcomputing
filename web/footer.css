@@ -1,0 +1,7 @@
+footer {
+    color:var(--main-color);
+    border:var(--border);
+    font-size:20px;
+    padding: var(--space-small);
+    height:10 rem;
+}
