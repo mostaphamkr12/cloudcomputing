@@ -16,8 +16,6 @@ export const accountService = {
     },
 
     saveAccount(id, lastName, firstName) {
-
-        
         const account = new Account(id, lastName, firstName);
         accountDAO.updateAccount(account);
     },

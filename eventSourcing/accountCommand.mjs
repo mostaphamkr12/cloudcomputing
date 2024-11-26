@@ -14,7 +14,6 @@ export const accountCommand = {
 
    
    updateAccount(id, lastName, firstName) {
-    // new event(..., new Date())
         const account =  accountCommandDAO.retrieveAccount(id);
         account.lastName = lastName;
         account.firstName = firstName

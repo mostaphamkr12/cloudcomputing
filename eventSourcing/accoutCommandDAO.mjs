@@ -4,6 +4,7 @@ import { accountSummaryList} from './queryDatabase.mjs';
 import { accountCache} from './cache.mjs';
 import { eventList,addEvent} from './eventStore.mjs'
 
+
 export const accountCommandDAO = {
     saveAccount(account,event) {
         ACCOUNT_LIST.push(account);
@@ -35,6 +36,19 @@ export const accountCommandDAO = {
         return null;
     },
     retrieveAccount(id) {
-        return ACCOUNT_LIST.find(account => account.id === id);
-    }
-};
+        const EventsById=eventList.find(event => event.id === id);
+        const latestEvent = EventsById[EventsById.length-1];
+        let account ;
+        switch(latestEvent.name){
+            case 'AccountCreated':
+                account = lastestEvent.payload;
+                break;
+            case 'AccountUpdated':
+                account.firstName = latestEvent.payload.firstName;
+                account.lastName = latestEvent.payload.lastName
+                break;
+            default:
+                account = null;
+        }
+        return account;   }
+}
